@@ -1,4 +1,3 @@
-# ProjectML_145-157
 # Mendiagnosa Gejala Covid 19 Pada Foto Rontgen Dada Menggunakan Machine Learning 
 # Dataset Details
 Dataset ini berisikan foto rontgen dada atau paru-paru dengan total 852 foto dengan rincian : 426 foto rontgen pasien positif Covid19 dan 426 foto rontgen pasien negatif Covid19. Dataset bersifat publik yang bisa diakses melalui: https://github.com/ari-dasci/OD-covidgr/releases/tag/1.0

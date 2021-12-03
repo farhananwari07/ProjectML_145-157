@@ -1,1 +1,1 @@
-folder ini berisikan hasil proses pre-processing gambar yang sudah diubah menjadi numpy
+folder ini berisikan hasil Model Yang telah tersimpan

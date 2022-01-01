@@ -12,7 +12,7 @@ ALLOWED_EXTENSIONS = {'png', 'jpg', 'jpeg'}
 app = Flask(__name__)
 UPLOAD_FOLDER = 'static/uploads/'
 app.config['MAX_CONTENT_LENGTH'] = 10 * 1024 * 1024
-datahasil = os.listdir('static/result/')
+datahasil = 'static/result/'
 
 print("Init Flask App")
 app = Flask(__name__)
@@ -38,10 +38,10 @@ def f_074_predict_compare():
     chosen_model = request.form.getlist('select_model')
     filename = request.form.get('input_image')
     img = cv2.cvtColor(np.array(np.array(Image.open(filename))), cv2.COLOR_BGR2RGB)
-    model_dict = {'maxpol' :   'static/model/model/CNNModelMax.h5',
-                  'avpol'   :  'static/model/model/CNNModelAvgV2.h5',
-                  'avpoladel'   :   'static/model/model/CNNModelAvg.h5',
-                  'ResNet'   :   'static/model/model/ModelResNet50.h5'
+    model_dict = {'CNNMaxModel' :   'static/model/model/CNNModelMax.h5',
+                  'CNNAvgModel'   :  'static/model/model/CNNModelAvgV2.h5',
+                  'CNNAvgModelV2'   :   'static/model/model/CNNModelAvg.h5',
+                  'Resnet50Model'   :   'static/model/model/ModelResNet50.h5'
                   }
 
     for m in chosen_model:
@@ -71,11 +71,12 @@ def f_074_predicts_compare():
     file = request.files["file"]
     file.save(os.path.join('static', 'temp.jpg'))
     img = cv2.cvtColor(np.array(np.array(Image.open(file))), cv2.COLOR_BGR2RGB)
-    model_dict = {'maxpol' :   'static/model/model/CNNModelMax.h5',
-                  'avpol'   :  'static/model/model/CNNModelAvgV2.h5',
-                  'avpoladel'   :   'static/model/model/CNNModelAvg.h5',
-                  'ResNet'   :   'static/model/model/ModelResNet50.h5' 
+    model_dict =  {'CNNMaxModel' :   'static/model/model/CNNModelMax.h5',
+                  'CNNAvgModel'   :  'static/model/model/CNNModelAvgV2.h5',
+                  'CNNAvgModelV2'   :   'static/model/model/CNNModelAvg.h5',
+                  'Resnet50Model'   :   'static/model/model/ModelResNet50.h5'
                   }
+
     for m in chosen_model:
         if "_js" in m:
             json_file = open(model_dict[m][0], 'r')
@@ -110,11 +111,12 @@ def f_074_select():
 def f_074_predict_select():
     
     chosen_model = request.form['select_model']
-    model_dict = {'maxpol' :   'static/model/model/CNNModelMax.h5',
-                  'avpol'   :  'static/model/model/CNNModelAvgV2.h5',
-                  'avpoladel'   :   'static/model/model/CNNModelAvg.h5',
-                  'ResNet'   :   'static/model/model/ModelResNet50.h5'
+    model_dict =  {'CNNMaxModel' :   'static/model/model/CNNModelMax.h5',
+                  'CNNAvgModel'   :  'static/model/model/CNNModelAvgV2.h5',
+                  'CNNAvgModelV2'   :   'static/model/model/CNNModelAvg.h5',
+                  'Resnet50Model'   :   'static/model/model/ModelResNet50.h5'
                   }
+
 
     if chosen_model in model_dict:
         if "_js" in chosen_model:
@@ -142,11 +144,12 @@ def f_074_predict_select():
 def f_074_predicts_select():
 
     chosen_model = request.form['select_model']
-    model_dict = {'maxpol' :   'static/model/model/CNNModelMax.h5',
-                  'avpol'   :  'static/model/model/CNNModelAvgV2.h5',
-                  'avpoladel'   :   'static/model/model/CNNModelAvg.h5',
-                  'ResNet'   :   'static/model/model/ModelResNet50.h5'
+    model_dict =  {'CNNMaxModel' :   'static/model/model/CNNModelMax.h5',
+                  'CNNAvgModel'   :  'static/model/model/CNNModelAvgV2.h5',
+                  'CNNAvgModelV2'   :   'static/model/model/CNNModelAvg.h5',
+                  'Resnet50Model'   :   'static/model/model/ModelResNet50.h5'
                   }
+
 
     if chosen_model in model_dict:
         if "_js" in chosen_model:

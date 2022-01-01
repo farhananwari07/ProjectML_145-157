@@ -1,0 +1,133 @@
+{% extends 'base.html' %}
+{% block content %}
+    <!-- page-title -->
+    <section class="page-title centred" style="background-image: url(../static/main/images/background/bg1.png);">
+        <div class="container">
+            <div class="content-box">
+                <div class="title">X-ray Classification Covid-19 & Normal</div>
+            </div>
+        </div>
+    </section>
+    <!-- page-title end -->
+
+    <!-- form-section -->
+    <section class="contact-section" style="padding-top:50px;" id="predict1">
+        <div class="container">
+            <div class="title-box centred" >
+                <div class="sec-title"><a class="sec-title" href="#predict1">Upload an Image</a> / <a class="sec-title" href="#predict">Select an Image</a><br> to Classify</div><br>
+            </div>
+            <form class="login100-form validate-form" action="/1/pred_comps" method=post enctype=multipart/form-data>
+                <div class="row" style=" width: 100%; margin: auto; padding: 15px;" >
+                    <div class="column" >
+                        <div class="form-check form-check-inline">
+                            <p style="font-weight: bold; color: black;">Compare Model : </p>
+                        </div>   
+                    </div>
+                    <div class="column" >
+                        <div class="form-check form-check-inline"> 
+                            <div class="checkboxes">
+                                <label style="padding-left:2em"><input name="select_model" type="checkbox" id="chose_model" value='maxpol'  > <span>MobileNet </span></label>
+                                <label style="padding-left:2em"><input name="select_model" type="checkbox" id="chose_model" value='avgpol'     /> <span>VGG16</span></label>
+                                <label style="padding-left:2em"><input name="select_model" type="checkbox" id="chose_model" value='avgpoladel'     /> <span>ResNet50V2</span></label>
+                                <label style="padding-left:2em"><input name="select_model" type="checkbox" id="chose_model" value='ResNet'     /> <span>Maxpooling</span></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <img id="image-preview" alt="image preview" src="#" style="width: 35%;"/>
+                <div class="container-login100-form-btn">
+                    <div class="wrap-input100 validate-input" data-validate="Image file is required" id="input">
+                        <input class="input100" id="image-source" name="file" onchange="previewImage();" type="file"
+                            alt="Input Image" accept="image/jpeg,image/jpg,image/png">
+                        <span class="focus-input100"></span>
+                        <span class="symbol-input100">
+                            <i class="fa fa-file" aria-hidden="true"></i>
+                        </span>
+                    </div>
+                </div>
+                <div class="container-login100-form-btn">
+                    <button class="login100-form-btn" id="send" type="submit">
+                        Execute
+                    </button>
+                </div>
+            </form>
+        </div>
+    </section>
+    <!-- form-section end -->
+
+    <!-- grid-section -->
+    <section class="contact-section centred" style="padding-top:100px;" id="predict">
+        <div class="container">
+            <div class="title-box centred" >
+                <div class="sec-title">Select an Image to Predict</div><br>
+            </div>
+            <form action="/1/pred_comp" method="POST">
+                <div class="row" style=" width: 100%; margin: auto; padding: 15px;" >
+                    <div class="column" >
+                        <div class="form-check form-check-inline">
+                            <p style="font-weight: bold; color: black;">Compare Model : </p>
+                        </div>   
+                    </div>
+                    <div class="column" >
+                        <div class="form-check form-check-inline"> 
+                            <div class="checkboxes">
+                                <label style="padding-left:2em"><input name="select_model" type="checkbox" id="chose_model" value='maxpol'  > <span>MobileNet  </span></label>
+                                <label style="padding-left:2em"><input name="select_model" type="checkbox" id="chose_model" value='avpol'     />                 <span>VGG16    </span></label>
+                                <label style="padding-left:2em"><input name="select_model" type="checkbox" id="chose_model" value='avpoladel'     />                 <span>ResNet50V2   </span></label>
+                                <label style="padding-left:2em"><input name="select_model" type="checkbox" id="chose_model" value='ResNet'     />                 <span>Maxpooling   </span></label>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="column" style="background-color:rgb(235, 235, 235);">
+                        <p style="text-align: center;">Positif</p>
+                        <input type="hidden" name="input_image" id="count" value="static/main/images/predict/p/a1.jpg" />
+                        <input type="image" name="submit" onclick="change('static/main/images/predict/p/a1.jpg')" style="height: 235px;width: 235px;padding-left: 10%;padding-right: 10%;padding-bottom: 10%;" src="{{ url_for('static', filename='main/images/predict/p/a1.jpg')}}"/>
+                    </div>
+                    <div class="column" style="background-color:rgb(235, 235, 235);">
+                        <p style="text-align: center;">Positif</p>
+                        <input type="image" name="submit" onclick="change('static/main/images/predict/p/a2.jpg')" style="height: 235px;width: 235px;padding-left: 10%;padding-right: 10%;padding-bottom: 10%;" src="{{ url_for('static', filename='main/images/predict/p/a2.jpg')}}"/>
+                    </div>
+                    <div class="column" style="background-color:rgb(235, 235, 235);">
+                        <p style="text-align: center;">Positif</p>
+                        <input type="image" name="submit" onclick="change('static/main/images/predict/p/a3.jpg')" style="height: 235px;width: 235px;padding-left: 10%;padding-right: 10%;padding-bottom: 10%;" src="{{ url_for('static', filename='main/images/predict/p/a3.jpg')}}"/>
+                    </div>
+                      <div class="column" style="background-color:rgb(235, 235, 235);">
+                        <p style="text-align: center;">Positif</p>
+                        <input type="image" name="submit" onclick="change('static/main/images/predict/p/a4.jpg')" style="height: 235px;width: 235px;padding-left: 10%;padding-right: 10%;padding-bottom: 10%;" src="{{ url_for('static', filename='main/images/predict/p/a4.jpg')}}"/>
+                    </div>
+                      <div class="column" style="background-color:rgb(235, 235, 235);">
+                        <p style="text-align: center;">Positif</p>
+                        <input type="image" name="submit" onclick="change('static/main/images/predict/p/a5.jpg')" style="height: 235px;width: 235px;padding-left: 10%;padding-right: 10%;padding-bottom: 10%;" src="{{ url_for('static', filename='main/images/predict/p/a5.jpg')}}"/>
+                    </div>
+                  </div>                    
+                  <div class="row">
+                    <div class="column" style="background-color:rgb(235, 235, 235);">
+                        <p style="text-align: center;">Negatif</p>
+                        <input type="image" name="submit" onclick="change('static/main/images/predict/n/a1.jpg')" style="height: 235px;width: 235px;padding-left: 10%;padding-right: 10%;padding-bottom: 10%;" src="{{ url_for('static', filename='main/images/predict/n/a1.jpg')}}"/>
+                    </div>
+                    <div class="column" style="background-color:rgb(235, 235, 235);">
+                        <p style="text-align: center;">Negatif</p>
+                        <input type="image" name="submit" onclick="change('static/main/images/predict/n/a2.jpg')"  style="height: 235px;width: 235px;padding-left: 10%;padding-right: 10%;padding-bottom: 10%;" src="{{ url_for('static', filename='main/images/predict/n/a2.jpg')}}"/>
+                    </div>
+                    <div class="column" style="background-color:rgb(235, 235, 235);">
+                        <p style="text-align: center;">Negatif</p>
+                        <input type="image" name="submit" onclick="change('static/main/images/predict/n/a3.jpg')" style="height: 235px;width: 235px;padding-left: 10%;padding-right: 10%;padding-bottom: 10%;" src="{{ url_for('static', filename='main/images/predict/n/a3.jpg')}}"/>
+                    </div>
+                      <div class="column" style="background-color:rgb(235, 235, 235);">
+                        <p style="text-align: center;">Negatif</p>
+                        <input type="image" name="submit" onclick="change('static/main/images/predict/n/a4.jpg')" style="height: 235px;width: 235px;padding-left: 10%;padding-right: 10%;padding-bottom: 10%;" src="{{ url_for('static', filename='main/images/predict/n/a4.jpg')}}" />
+                    </div>
+                      <div class="column" style="background-color:rgb(235, 235, 235);">
+                        <p style="text-align: center;">Negatif</p>
+                        <input type="image" name="submit" onclick="change('static/main/images/predict/n/a5.jpg')" style="height: 235px;width: 235px;padding-left: 10%;padding-right: 10%;padding-bottom: 10%;" src="{{ url_for('static', filename='main/images/predict/n/a5.jpg')}}"/>
+                    </div>
+                  </div>
+                </div>
+            </form>
+        </div>
+    </section>
+    <!-- grid-section end -->
+
+{% endblock %}

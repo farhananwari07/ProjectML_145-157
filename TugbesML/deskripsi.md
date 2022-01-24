@@ -1,0 +1,2 @@
+- Folder ini berisikan file aplikasi klasifikasi foto rontgen paru-paru penderita Covid-19. Selain itu dalam folder ini juga berisikan folder dengan nama "training_model" yang berisikan file training model klasifikasi yang terdiri 3 model yaitu CNN, ResNet50, dan VGG16
+-  Untuk deployment secara online bisa diakses pada link berikut : https://covid19imgclass.herokuapp.com/
